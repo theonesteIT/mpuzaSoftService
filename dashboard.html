@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="dashboard">Admin Dashboard - Impuza Soft</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.css">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            background: #2c3e50;
+            color: white;
+        }
+        .sidebar .nav-link {
+            color: rgba(255,255,255,.8);
+            padding: 1rem;
+        }
+        .sidebar .nav-link:hover {
+            color: white;
+            background: rgba(255,255,255,.1);
+        }
+        .sidebar .nav-link.active {
+            background: rgba(255,255,255,.2);
+            color: white;
+        }
+        .main-content {
+            padding: 2rem;
+        }
+        .stat-card {
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,.1);
+        }
+        .stat-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 300px;
+            margin-bottom: 2rem;
+        }
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 0 10px rgba(0,0,0,.1);
+        }
+        .language-switcher {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <div class="btn-group">
+            <button class="btn btn-outline-primary" onclick="switchLanguage('en')">EN</button>
+            <button class="btn btn-outline-primary" onclick="switchLanguage('rw')">RW</button>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 px-0 sidebar">
+                <div class="p-3">
+                    <h4>Impuza Soft</h4>
+                    <p class="text-muted">Admin Dashboard</p>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dashboard" data-i18n="dashboard">
+                            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services" data-i18n="services">
+                            <i class="fas fa-concierge-bell me-2"></i> Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#workers" data-i18n="workers">
+                            <i class="fas fa-users me-2"></i> Workers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#clients" data-i18n="clients">
+                            <i class="fas fa-user-friends me-2"></i> Clients
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#bookings" data-i18n="recent-bookings">
+                            <i class="fas fa-calendar-check me-2"></i> Bookings
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reports">
+                            <i class="fas fa-chart-bar me-2"></i> Reports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content">
+                <!-- Dashboard Section -->
+                <div id="dashboard">
+                    <h2 class="mb-4">Dashboard Overview</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="stat-card bg-primary text-white">
+                                <i class="fas fa-users"></i>
+                                <h3 id="totalClients">0</h3>
+                                <p data-i18n="total-clients">Total Clients</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card bg-success text-white">
+                                <i class="fas fa-concierge-bell"></i>
+                                <h3 id="totalServices">0</h3>
+                                <p data-i18n="total-services">Active Services</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card bg-warning text-white">
+                                <i class="fas fa-user-tie"></i>
+                                <h3 id="totalWorkers">0</h3>
+                                <p data-i18n="total-workers">Workers</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card bg-info text-white">
+                                <i class="fas fa-calendar-check"></i>
+                                <h3 id="totalBookings">0</h3>
+                                <p data-i18n="today-bookings">Today's Bookings</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" data-i18n="service-popularity">Service Popularity</h5>
+                                    <div class="chart-container">
+                                        <canvas id="serviceChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title" data-i18n="monthly-revenue">Monthly Revenue</h5>
+                                    <div class="chart-container">
+                                        <canvas id="revenueChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Bookings -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title" data-i18n="recent-bookings">Recent Bookings</h5>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th data-i18n="service">Service</th>
+                                            <th data-i18n="date">Date</th>
+                                            <th data-i18n="time">Time</th>
+                                            <th data-i18n="status">Status</th>
+                                            <th data-i18n="actions">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentBookingsTable">
+                                        <!-- Bookings will be populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services Section -->
+                <div id="services" class="d-none">
+                    <h2 class="mb-4">Service Management</h2>
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+                        <i class="fas fa-plus"></i> Add New Service
+                    </button>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Service Name</th>
+                                    <th>Category</th>
+                                    <th>Price Range</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="servicesList">
+                                <!-- Services will be added here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Workers Section -->
+                <div id="workers" class="d-none">
+                    <h2 class="mb-4">Worker Management</h2>
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addWorkerModal">
+                        <i class="fas fa-plus"></i> Add New Worker
+                    </button>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Specialization</th>
+                                    <th>Contact</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="workersList">
+                                <!-- Workers will be added here dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Clients Section -->
+                <div id="clients" class="d-none">
+                    <h2 class="mb-4">Client Management</h2>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Last Booking</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clientsList">
+                                        <!-- Clients will be added here dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Client Demographics</h5>
+                                    <div class="chart-container">
+                                        <canvas id="clientDemographicsChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Service Modal -->
+    <div class="modal fade" id="addServiceModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addServiceForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Service Name (English)</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Service Name (Kinyarwanda)</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" rows="3" required></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Category</label>
+                                <select class="form-control" required>
+                                    <option value="hair">Hair Dressing</option>
+                                    <option value="electrical">Electrical</option>
+                                    <option value="cooking">Cooking</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Price Range</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Service Image</label>
+                            <input type="file" class="form-control" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Service</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Worker Modal -->
+    <div class="modal fade" id="addWorkerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Worker</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addWorkerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Specialization</label>
+                            <select class="form-control" required>
+                                <option value="hair">Hair Dressing</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="cooking">Cooking</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            <input type="tel" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Profile Picture</label>
+                            <input type="file" class="form-control" accept="image/*">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save Worker</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="services.js"></script>
+    <script src="models.js"></script>
+    <script src="translations.js"></script>
+    <script>
+        // Initialize charts with real data
+        function initializeCharts() {
+            // Service Popularity Chart
+            const serviceCtx = document.getElementById('serviceChart').getContext('2d');
+            const serviceData = dataManager.getServicePopularity();
+            const services = serviceManager.getAllServices();
+            
+            new Chart(serviceCtx, {
+                type: 'bar',
+                data: {
+                    labels: services.map(service => service.title.en),
+                    datasets: [{
+                        label: 'Bookings',
+                        data: services.map(service => serviceData[service.id] || 0),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 206, 86, 0.5)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueData = dataManager.getMonthlyRevenue();
+            const months = Object.keys(revenueData).sort();
+            
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: months.map(month => {
+                        const [year, monthNum] = month.split('-');
+                        return new Date(year, monthNum - 1).toLocaleString('default', { month: 'short' });
+                    }),
+                    datasets: [{
+                        label: 'Revenue',
+                        data: months.map(month => revenueData[month]),
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Client Demographics Chart
+            const demographicsCtx = document.getElementById('clientDemographicsChart').getContext('2d');
+            const demographics = dataManager.getClientDemographics();
+            
+            new Chart(demographicsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Male', 'Female', 'Other'],
+                    datasets: [{
+                        data: [demographics.male, demographics.female, demographics.other],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.5)',
+                            'rgba(255, 99, 132, 0.5)',
+                            'rgba(255, 206, 86, 0.5)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        // Update statistics with real data
+        function updateStats() {
+            document.getElementById('totalClients').textContent = dataManager.getAllClients().length;
+            document.getElementById('totalServices').textContent = serviceManager.getAllServices().length;
+            document.getElementById('totalWorkers').textContent = dataManager.getAllWorkers().length;
+            document.getElementById('totalBookings').textContent = dataManager.getBookingsByDate(new Date().toISOString().split('T')[0]).length;
+        }
+
+        // Display workers in the table
+        function displayWorkers() {
+            const workersList = document.getElementById('workersList');
+            workersList.innerHTML = '';
+
+            dataManager.getAllWorkers().forEach(worker => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${worker.name}</td>
+                    <td>${worker.specialization}</td>
+                    <td>${worker.email}<br>${worker.phone}</td>
+                    <td><span class="badge bg-${worker.status === 'active' ? 'success' : 'danger'}">${worker.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" onclick="editWorker('${worker.id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteWorker('${worker.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                workersList.appendChild(row);
+            });
+        }
+
+        // Display clients in the table
+        function displayClients() {
+            const clientsList = document.getElementById('clientsList');
+            clientsList.innerHTML = '';
+
+            dataManager.getAllClients().forEach(client => {
+                const lastBooking = dataManager.getBookingsByClient(client.id)
+                    .sort((a, b) => new Date(b.date) - new Date(a.date))[0];
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${client.name}</td>
+                    <td>${client.email}</td>
+                    <td>${client.phone}</td>
+                    <td>${lastBooking ? new Date(lastBooking.date).toLocaleDateString() : 'No bookings'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" onclick="viewClientDetails('${client.id}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-sm btn-warning" onclick="editClient('${client.id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteClient('${client.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                clientsList.appendChild(row);
+            });
+        }
+
+        // Display recent bookings
+        function displayRecentBookings() {
+            const recentBookings = document.getElementById('recentBookingsTable');
+            recentBookings.innerHTML = '';
+
+            const bookings = dataManager.getAllBookings()
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 5);
+
+            bookings.forEach(booking => {
+                const client = dataManager.getClientById(booking.clientId);
+                const service = serviceManager.getServiceById(booking.serviceId);
+                const worker = dataManager.getWorkerById(booking.workerId);
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${service ? service.title[document.documentElement.lang] : 'Unknown'}</td>
+                    <td>${new Date(booking.date).toLocaleDateString()}</td>
+                    <td>${booking.time}</td>
+                    <td><span class="badge bg-${getStatusColor(booking.status)}">${booking.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" data-i18n="edit">Edit</button>
+                        <button class="btn btn-sm btn-danger" data-i18n="delete">Delete</button>
+                    </td>
+                `;
+                recentBookings.appendChild(row);
+            });
+        }
+
+        // Helper function for status colors
+        function getStatusColor(status) {
+            switch (status) {
+                case 'completed': return 'success';
+                case 'pending': return 'warning';
+                case 'cancelled': return 'danger';
+                default: return 'secondary';
+            }
+        }
+
+        // Handle worker form submission
+        document.getElementById('addWorkerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            const worker = new Worker(
+                Date.now().toString(),
+                formData.get('name'),
+                formData.get('specialization'),
+                formData.get('email'),
+                formData.get('phone'),
+                formData.get('image')
+            );
+
+            dataManager.addWorker(worker);
+            this.reset();
+            displayWorkers();
+            updateStats();
+        });
+
+        // Handle service form submission
+        document.getElementById('addServiceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            
+            const service = {
+                id: Date.now().toString(),
+                title: {
+                    en: formData.get('titleEn'),
+                    rw: formData.get('titleRw')
+                },
+                description: {
+                    en: formData.get('descriptionEn'),
+                    rw: formData.get('descriptionRw')
+                },
+                category: formData.get('category'),
+                priceRange: formData.get('priceRange'),
+                image: formData.get('image')
+            };
+
+            serviceManager.addService(service);
+            this.reset();
+            displayServices();
+            updateStats();
+        });
+
+        // Delete worker
+        function deleteWorker(id) {
+            if (confirm('Are you sure you want to delete this worker?')) {
+                dataManager.deleteWorker(id);
+                displayWorkers();
+                updateStats();
+            }
+        }
+
+        // Delete client
+        function deleteClient(id) {
+            if (confirm('Are you sure you want to delete this client?')) {
+                dataManager.deleteClient(id);
+                displayClients();
+                updateStats();
+            }
+        }
+
+        // Edit worker
+        function editWorker(id) {
+            const worker = dataManager.getWorkerById(id);
+            if (worker) {
+                const form = document.getElementById('addWorkerForm');
+                form.name.value = worker.name;
+                form.specialization.value = worker.specialization;
+                form.email.value = worker.email;
+                form.phone.value = worker.phone;
+                // Show modal
+                new bootstrap.Modal(document.getElementById('addWorkerModal')).show();
+            }
+        }
+
+        // Edit client
+        function editClient(id) {
+            const client = dataManager.getClientById(id);
+            if (client) {
+                // Implement client editing functionality
+            }
+        }
+
+        // View client details
+        function viewClientDetails(id) {
+            const client = dataManager.getClientById(id);
+            if (client) {
+                // Implement client details view
+            }
+        }
+
+        // Handle navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                
+                // Hide all sections
+                document.querySelectorAll('.main-content > div').forEach(div => {
+                    div.classList.add('d-none');
+                });
+                
+                // Show target section
+                document.getElementById(targetId).classList.remove('d-none');
+                
+                // Update active nav link
+                document.querySelectorAll('.nav-link').forEach(navLink => {
+                    navLink.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCharts();
+            updateStats();
+            displayWorkers();
+            displayClients();
+            displayRecentBookings();
+        });
+    </script>
+</body>
+</html> 

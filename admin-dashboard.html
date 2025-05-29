@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Ngererayo</title>
+    <link rel="stylesheet" href="css/admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h2>Ngererayo</h2>
+                <p>Admin Panel</p>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-tab="dashboard">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </li>
+                <li data-tab="services">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>Services</span>
+                </li>
+                <li data-tab="customers">
+                    <i class="fas fa-users"></i>
+                    <span>Customers</span>
+                </li>
+                <li data-tab="chats">
+                    <i class="fas fa-comments"></i>
+                    <span>Chats</span>
+                </li>
+                <li data-tab="advertisements">
+                    <i class="fas fa-ad"></i>
+                    <span>Advertisements</span>
+                </li>
+                <li data-tab="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Overview -->
+            <section id="dashboard" class="tab-content active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3>Total Customers</h3>
+                            <p>1,234</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-concierge-bell"></i>
+                        <div class="stat-info">
+                            <h3>Active Services</h3>
+                            <p>15</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-comments"></i>
+                        <div class="stat-info">
+                            <h3>Active Chats</h3>
+                            <p>28</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-ad"></i>
+                        <div class="stat-info">
+                            <h3>Active Ads</h3>
+                            <p>5</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Management -->
+            <section id="services" class="tab-content">
+                <h2>Services Management</h2>
+                <button class="add-new-btn" onclick="showAddServiceModal()">
+                    <i class="fas fa-plus"></i> Add New Service
+                </button>
+                <div class="services-grid">
+                    <!-- Service cards will be dynamically added here -->
+                </div>
+            </section>
+
+            <!-- Customers Management -->
+            <section id="customers" class="tab-content">
+                <h2>Customers Management</h2>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search customers...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="customers-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Customer rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Chat Management -->
+            <section id="chats" class="tab-content">
+                <h2>Customer Chats</h2>
+                <div class="chat-container">
+                    <div class="chat-list">
+                        <!-- Chat list will be dynamically added here -->
+                    </div>
+                    <div class="chat-window">
+                        <div class="chat-header">
+                            <h3>Select a chat to start messaging</h3>
+                        </div>
+                        <div class="chat-messages">
+                            <!-- Messages will be dynamically added here -->
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" placeholder="Type your message...">
+                            <button><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Advertisement Management -->
+            <section id="advertisements" class="tab-content">
+                <h2>Advertisement Management</h2>
+                <button class="add-new-btn" onclick="showAddAdModal()">
+                    <i class="fas fa-plus"></i> Add New Advertisement
+                </button>
+                <div class="ads-grid">
+                    <!-- Advertisement cards will be dynamically added here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Service Modal -->
+    <div id="addServiceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Service</h2>
+            <form id="addServiceForm">
+                <div class="form-group">
+                    <label for="serviceName">Service Name</label>
+                    <input type="text" id="serviceName" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceDescription">Description</label>
+                    <textarea id="serviceDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="servicePrice">Price</label>
+                    <input type="number" id="servicePrice" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceImage">Service Image</label>
+                    <input type="file" id="serviceImage" accept="image/*" required>
+                </div>
+                <button type="submit">Add Service</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Advertisement Modal -->
+    <div id="addAdModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Advertisement</h2>
+            <form id="addAdForm">
+                <div class="form-group">
+                    <label for="adTitle">Title</label>
+                    <input type="text" id="adTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="adDescription">Description</label>
+                    <textarea id="adDescription" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="adImage">Image</label>
+                    <input type="file" id="adImage" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="adDuration">Duration (seconds)</label>
+                    <input type="number" id="adDuration" min="5" max="60" value="10" required>
+                </div>
+                <button type="submit">Add Advertisement</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/admin-dashboard.js"></script>
+</body>
+</html> 

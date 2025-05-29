@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Impuza Soft</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .service-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .feature-list {
+            margin-bottom: 1rem;
+        }
+        .service-card {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" data-i18n="brand">Impuza Soft</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Back to Website</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Panel -->
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Service Management</h1>
+
+        <!-- Add New Service Form -->
+        <div class="service-form mb-5">
+            <h2 class="mb-4">Add New Service</h2>
+            <form id="serviceForm">
+                <div class="mb-3">
+                    <label class="form-label">Service ID</label>
+                    <input type="text" class="form-control" id="serviceId" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Title (English)</label>
+                    <input type="text" class="form-control" id="titleEn" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Title (Kinyarwanda)</label>
+                    <input type="text" class="form-control" id="titleRw" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description (English)</label>
+                    <textarea class="form-control" id="descEn" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Description (Kinyarwanda)</label>
+                    <textarea class="form-control" id="descRw" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Icon Class (Font Awesome)</label>
+                    <input type="text" class="form-control" id="icon" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Image URL</label>
+                    <input type="text" class="form-control" id="image" required>
+                </div>
+
+                <!-- Pricing Plans -->
+                <h3 class="mt-4 mb-3">Pricing Plans</h3>
+                
+                <!-- Basic Plan -->
+                <div class="card mb-3">
+                    <div class="card-header">Basic Plan</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="text" class="form-control" id="basicPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Features (English)</label>
+                            <textarea class="form-control" id="basicFeaturesEn" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Features (Kinyarwanda)</label>
+                            <textarea class="form-control" id="basicFeaturesRw" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Plan -->
+                <div class="card mb-3">
+                    <div class="card-header">Standard Plan</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="text" class="form-control" id="standardPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Features (English)</label>
+                            <textarea class="form-control" id="standardFeaturesEn" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Features (Kinyarwanda)</label>
+                            <textarea class="form-control" id="standardFeaturesRw" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="card mb-3">
+                    <div class="card-header">Premium Plan</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="text" class="form-control" id="premiumPrice" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Features (English)</label>
+                            <textarea class="form-control" id="premiumFeaturesEn" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Features (Kinyarwanda)</label>
+                            <textarea class="form-control" id="premiumFeaturesRw" required></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Service</button>
+            </form>
+        </div>
+
+        <!-- Existing Services -->
+        <div class="existing-services">
+            <h2 class="mb-4">Existing Services</h2>
+            <div id="servicesList" class="row">
+                <!-- Services will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="services.js"></script>
+    <script>
+        // Handle form submission
+        document.getElementById('serviceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const service = {
+                id: document.getElementById('serviceId').value,
+                title: {
+                    en: document.getElementById('titleEn').value,
+                    rw: document.getElementById('titleRw').value
+                },
+                description: {
+                    en: document.getElementById('descEn').value,
+                    rw: document.getElementById('descRw').value
+                },
+                icon: document.getElementById('icon').value,
+                image: document.getElementById('image').value,
+                pricingPlans: {
+                    basic: {
+                        price: document.getElementById('basicPrice').value,
+                        features: {
+                            en: document.getElementById('basicFeaturesEn').value.split('\n'),
+                            rw: document.getElementById('basicFeaturesRw').value.split('\n')
+                        }
+                    },
+                    standard: {
+                        price: document.getElementById('standardPrice').value,
+                        features: {
+                            en: document.getElementById('standardFeaturesEn').value.split('\n'),
+                            rw: document.getElementById('standardFeaturesRw').value.split('\n')
+                        }
+                    },
+                    premium: {
+                        price: document.getElementById('premiumPrice').value,
+                        features: {
+                            en: document.getElementById('premiumFeaturesEn').value.split('\n'),
+                            rw: document.getElementById('premiumFeaturesRw').value.split('\n')
+                        }
+                    }
+                }
+            };
+
+            serviceManager.addService(service);
+            this.reset();
+            displayServices();
+        });
+
+        // Display existing services
+        function displayServices() {
+            const servicesList = document.getElementById('servicesList');
+            servicesList.innerHTML = '';
+
+            serviceManager.getAllServices().forEach(service => {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'col-md-4 mb-4';
+                serviceCard.innerHTML = `
+                    <div class="card service-card">
+                        <div class="card-body">
+                            <h3 class="card-title">${service.title.en}</h3>
+                            <p class="card-text">${service.description.en}</p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-warning btn-sm" onclick="editService('${service.id}')">Edit</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteService('${service.id}')">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                servicesList.appendChild(serviceCard);
+            });
+        }
+
+        // Delete service
+        function deleteService(id) {
+            if (confirm('Are you sure you want to delete this service?')) {
+                serviceManager.deleteService(id);
+                displayServices();
+            }
+        }
+
+        // Edit service
+        function editService(id) {
+            const service = serviceManager.getServiceById(id);
+            if (service) {
+                document.getElementById('serviceId').value = service.id;
+                document.getElementById('titleEn').value = service.title.en;
+                document.getElementById('titleRw').value = service.title.rw;
+                document.getElementById('descEn').value = service.description.en;
+                document.getElementById('descRw').value = service.description.rw;
+                document.getElementById('icon').value = service.icon;
+                document.getElementById('image').value = service.image;
+                document.getElementById('basicPrice').value = service.pricingPlans.basic.price;
+                document.getElementById('basicFeaturesEn').value = service.pricingPlans.basic.features.en.join('\n');
+                document.getElementById('basicFeaturesRw').value = service.pricingPlans.basic.features.rw.join('\n');
+                document.getElementById('standardPrice').value = service.pricingPlans.standard.price;
+                document.getElementById('standardFeaturesEn').value = service.pricingPlans.standard.features.en.join('\n');
+                document.getElementById('standardFeaturesRw').value = service.pricingPlans.standard.features.rw.join('\n');
+                document.getElementById('premiumPrice').value = service.pricingPlans.premium.price;
+                document.getElementById('premiumFeaturesEn').value = service.pricingPlans.premium.features.en.join('\n');
+                document.getElementById('premiumFeaturesRw').value = service.pricingPlans.premium.features.rw.join('\n');
+            }
+        }
+
+        // Initial display of services
+        displayServices();
+    </script>
+</body>
+</html> 

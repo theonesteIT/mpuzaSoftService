@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mpuza Soft - Professional Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#" >Mpuza Soft</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-i18n="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services" data-i18n="services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-i18n="contact">Contact</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="worker-registration.html" data-i18n="become-worker">Become a Worker</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="btn-group">
+                            <button class="btn btn-outline-primary language" onclick="switchLanguage('en')">EN</button>
+                            <button class="btn btn-outline-primary language" onclick="switchLanguage('rw')">RW</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center" id="home">
+        <div class="container">
+            <h1 class="display-4" >Welcome to Mpuza Soft</h1>
+            <p class="lead" data-i18n="hero-subtitle">Your one-stop solution for all professional services</p>
+            <a href="#services" class="btn btn-primary btn-lg" data-i18n="our-services">Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Slideshow -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-4" data-i18n="services-showcase">Our Services Showcase</h2>
+            <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="carousel-caption">
+                            
+                            <h3 data-i18n="hair-dressing-title">Hair Dressing Services</h3>
+                            <p data-i18n="hair-dressing-desc">Professional hair styling and treatment services</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption">
+                            <h3 data-i18n="electrical-title">Electrical Services</h3>
+                            <p data-i18n="electrical-desc">Expert electrical repairs and installations</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-caption">
+                            <img src='images/cooking.jpeg'>
+                            <h3 data-i18n="cooking-title">Cooking Services</h3>
+                            <p data-i18n="cooking-desc">Professional cooking and catering services</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-5 bg-light" id="services">
+        <div class="container">
+       
+            <div class="row" id="servicesGrid">
+                <!-- Services Section -->
+<section class="py-5 bg-light" id="services">
+    <div class="container">
+        <h2 class="text-center mb-5" data-i18n="our-services">Our Services</h2>
+        <div class="row">
+           
+                <div class="col-md-3 mb-4 h-200" >
+                    <div class="card service-card h-80">
+                        <img src="images/hair.jpeg" class="card-img-top" alt="">
+                        <div class="card-body text-center">
+                          <h3> Hair Dressing Services</h3>
+        <p> Professional hair styling and treatment services</p>
+
+                          
+
+                           
+
+                            <a href="booking.html" class="btn btn-primary mt-3" data-i18n="view-details">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            
+                  <div class="col-md-3 mb-4 h-200" >
+                    <div class="card service-card h-80">
+                        <img src="images/electricity.jpeg" class="card-img-top" alt="">
+                        <div class="card-body text-center">
+                          <h3> Electrical Services
+</h3>
+        <p> Expert electrical repairs and installations</p>
+
+                          
+
+                           
+
+                            <a href="booking.html" class="btn btn-primary mt-3" data-i18n="view-details">View Details</a>
+                        </div>
+                    </div>
+             
+          
+        </div>
+                <div class="col-md-3 mb-4 h-200" >
+                    <div class="card service-card h-80">
+                        <img src="images/maintenance.jpeg" class="card-img-top" alt="">
+                        <div class="card-body text-center">
+                          <h3> maintenance</h3>
+        <p> We make different maintenance</p>
+
+                          
+
+                           
+
+                            <a href="booking.html" class="btn btn-primary mt-3" data-i18n="view-details">View Details</a>
+                        </div>
+                    </div>
+             
+          
+        </div>
+       
+             <div class="col-md-3 mb-4 h-200" >
+                    <div class="card service-card h-80">
+                        <img src="images/delivery.jpeg" class="card-img-top" alt="">
+                        <div class="card-body text-center">
+                          <h3> Delivery
+</h3>
+        <p> We make delivery any where you are</p>
+
+                          
+
+                           
+
+                            <a href="booking.html" class="btn btn-primary mt-3" data-i18n="view-details">View Details</a>
+                        </div>
+                    </div>
+             
+          
+        </div>
+          
+        </div>
+        
+
+
+    </div>
+</section>
+
+
+                 
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <h2 class="text-center mb-4" data-i18n="contact-us">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" data-i18n-placeholder="your-name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" data-i18n-placeholder="your-email">
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-control" id="serviceSelect">
+                                <option data-i18n="select-service">Select Service</option>
+                                <!-- Service options will be dynamically added here -->
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" data-i18n-placeholder="your-message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100" data-i18n="send-message">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p data-i18n="copyright">&copy; 2024 Impuza Soft. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translations.js"></script>
+    <script src="services.js"></script>
+   
+</body>
+</html>

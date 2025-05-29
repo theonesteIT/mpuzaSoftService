@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details - Ngererayo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/service-details.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Ngererayo</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="service-details.html?type=hair-dressing">Hair Dressing</a>
+                        <a href="service-details.html?type=maintenance">Maintenance</a>
+                        <a href="service-details.html?type=delivery">Delivery</a>
+                        <a href="service-details.html?type=electricity">Electricity</a>
+                    </div>
+                </div>
+                <a href="workers.html">Workers</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <button class="login-btn" onclick="showLoginModal()">Sign In</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Service Details Section -->
+    <section class="service-details">
+        <div class="service-header">
+            <div class="service-icon">
+                <i class="fas fa-cut" id="serviceIcon"></i>
+            </div>
+            <h1 id="serviceTitle">Service Title</h1>
+        </div>
+        
+        <div class="service-content">
+            <div class="service-info">
+                <h2>Service Description</h2>
+                <p id="serviceDescription">Detailed description of the service will appear here.</p>
+                
+                <h2>What's Included</h2>
+                <ul id="serviceFeatures">
+                    <!-- Features will be added dynamically -->
+                </ul>
+            </div>
+            
+            <div class="service-sidebar">
+                <!-- Pricing Section -->
+                <div class="service-card pricing-section">
+                    <h3>Service Pricing</h3>
+                    <div class="pricing-info" id="pricingInfo">
+                        <!-- Pricing details will be added dynamically -->
+                    </div>
+                </div>
+
+                <!-- Booking Section -->
+                <div class="service-card booking-section">
+                    <h3>Book This Service</h3>
+                    <form id="bookingForm">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="time" required>
+                        </div>
+                        <button type="submit">Book Now</button>
+                    </form>
+                </div>
+
+                <!-- Payment Section -->
+                <div class="service-card payment-section">
+                    <h3>Make Payment</h3>
+                    <form id="paymentForm">
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input type="number" id="amount" placeholder="Enter amount" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiry Date</label>
+                                <input type="text" id="expiryDate" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" id="cvv" placeholder="123" required>
+                            </div>
+                        </div>
+                        <button type="submit">Process Payment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="chat-section" id="chatSection" style="display: none;">
+            <div class="chat-header">
+                <h2>Service Request Chat</h2>
+                <p>Please provide your location and service requirements</p>
+            </div>
+            <div class="chat-container">
+                <div id="chatMessages" class="chat-messages">
+                    <!-- Messages will be added here dynamically -->
+                </div>
+                <form id="chatForm" class="chat-form">
+                    <input type="text" id="location" placeholder="Enter your location" required>
+                    <textarea id="messageInput" placeholder="Describe your service needs..." required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign In</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="showSignupModal()">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="showLoginModal()">Sign In</a></p>
+        </div>
+    </div>
+
+    <script src="js/service-details.js"></script>
+</body>
+</html> 

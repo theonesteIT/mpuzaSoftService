@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers - Ngererayo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/workers.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>Ngererayo</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="service-details.html?type=hair-dressing">Hair Dressing</a>
+                        <a href="service-details.html?type=maintenance">Maintenance</a>
+                        <a href="service-details.html?type=delivery">Delivery</a>
+                        <a href="service-details.html?type=electricity">Electricity</a>
+                    </div>
+                </div>
+                <a href="workers.html">Workers</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <button class="login-btn" onclick="showLoginModal()">Sign In</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Workers Section -->
+    <section class="workers-section">
+        <div class="workers-header">
+            <h1>Our Professional Workers</h1>
+            <p>Find skilled professionals for your service needs</p>
+            <div class="search-filter">
+                <div class="search-box">
+                    <input type="text" placeholder="Search workers...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-options">
+                    <select>
+                        <option value="">All Categories</option>
+                        <option value="hair-dressing">Hair Dressing</option>
+                        <option value="maintenance">Maintenance</option>
+                        <option value="delivery">Delivery</option>
+                        <option value="electricity">Electricity</option>
+                    </select>
+                    <select>
+                        <option value="">Sort By</option>
+                        <option value="rating">Rating</option>
+                        <option value="experience">Experience</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="workers-container">
+            <!-- Worker Card 1 -->
+            <div class="worker-card">
+                <div class="worker-image">
+                    <img src="images/worker1.jpg" alt="Worker 1">
+                    <div class="worker-status available">Available</div>
+                </div>
+                <div class="worker-info">
+                    <h3>John Doe</h3>
+                    <p class="worker-title">Hair Stylist</p>
+                    <p class="worker-location"><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</p>
+                    <div class="worker-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.5</span>
+                    </div>
+                    <div class="worker-stats">
+                        <span><i class="fas fa-briefcase"></i> 5 years</span>
+                        <span><i class="fas fa-users"></i> 120+ clients</span>
+                    </div>
+                    <button class="view-profile-btn" onclick="showWorkerProfile(1)">View Profile</button>
+                </div>
+            </div>
+
+            <!-- Worker Card 2 -->
+            <div class="worker-card">
+                <div class="worker-image">
+                    <img src="images/worker2.jpg" alt="Worker 2">
+                    <div class="worker-status busy">Busy</div>
+                </div>
+                <div class="worker-info">
+                    <h3>Sarah Johnson</h3>
+                    <p class="worker-title">Electrician</p>
+                    <p class="worker-location"><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</p>
+                    <div class="worker-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>5.0</span>
+                    </div>
+                    <div class="worker-stats">
+                        <span><i class="fas fa-briefcase"></i> 8 years</span>
+                        <span><i class="fas fa-users"></i> 200+ clients</span>
+                    </div>
+                    <button class="view-profile-btn" onclick="showWorkerProfile(2)">View Profile</button>
+                </div>
+            </div>
+
+            <!-- Worker Card 3 -->
+            <div class="worker-card">
+                <div class="worker-image">
+                    <img src="images/worker3.jpg" alt="Worker 3">
+                    <div class="worker-status available">Available</div>
+                </div>
+                <div class="worker-info">
+                    <h3>Michael Brown</h3>
+                    <p class="worker-title">Maintenance Expert</p>
+                    <p class="worker-location"><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</p>
+                    <div class="worker-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>4.0</span>
+                    </div>
+                    <div class="worker-stats">
+                        <span><i class="fas fa-briefcase"></i> 6 years</span>
+                        <span><i class="fas fa-users"></i> 150+ clients</span>
+                    </div>
+                    <button class="view-profile-btn" onclick="showWorkerProfile(3)">View Profile</button>
+                </div>
+            </div>
+
+            <!-- Worker Card 4 -->
+            <div class="worker-card">
+                <div class="worker-image">
+                    <img src="images/worker4.jpg" alt="Worker 4">
+                    <div class="worker-status available">Available</div>
+                </div>
+                <div class="worker-info">
+                    <h3>Emma Wilson</h3>
+                    <p class="worker-title">Delivery Specialist</p>
+                    <p class="worker-location"><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</p>
+                    <div class="worker-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>4.8</span>
+                    </div>
+                    <div class="worker-stats">
+                        <span><i class="fas fa-briefcase"></i> 4 years</span>
+                        <span><i class="fas fa-users"></i> 180+ clients</span>
+                    </div>
+                    <button class="view-profile-btn" onclick="showWorkerProfile(4)">View Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Worker Profile Modal -->
+        <div id="workerProfileModal" class="modal">
+            <div class="modal-content worker-profile">
+                <span class="close">&times;</span>
+                <div class="profile-header">
+                    <img src="images/worker1.jpg" alt="Worker Profile">
+                    <div class="profile-info">
+                        <h2>John Doe</h2>
+                        <p class="worker-title">Hair Stylist</p>
+                        <p class="worker-location"><i class="fas fa-map-marker-alt"></i> Kigali, Rwanda</p>
+                        <div class="profile-stats">
+                            <span><i class="fas fa-briefcase"></i> 5 years experience</span>
+                            <span><i class="fas fa-users"></i> 120+ clients</span>
+                            <span><i class="fas fa-star"></i> 4.5 rating</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <h3>About</h3>
+                    <p>Experienced hair stylist with 5 years of professional experience. Specialized in modern cuts and coloring techniques.</p>
+                    
+                    <h3>Skills</h3>
+                    <div class="skills-list">
+                        <span>Hair Cutting</span>
+                        <span>Coloring</span>
+                        <span>Styling</span>
+                        <span>Treatments</span>
+                    </div>
+
+                    <h3>Experience</h3>
+                    <div class="experience-item">
+                        <h4>Senior Hair Stylist</h4>
+                        <p>Beauty Salon Kigali | 2020 - Present</p>
+                    </div>
+                    <div class="experience-item">
+                        <h4>Hair Stylist</h4>
+                        <p>Style Studio | 2018 - 2020</p>
+                    </div>
+
+                    <h3>Education</h3>
+                    <div class="education-item">
+                        <h4>Professional Hair Styling</h4>
+                        <p>Beauty Academy Rwanda | 2018</p>
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button class="contact-btn"><i class="fas fa-envelope"></i> Contact Worker</button>
+                    <button class="book-btn"><i class="fas fa-calendar-check"></i> Book Service</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Worker Application Form -->
+        <div class="application-section">
+            <div class="application-header">
+                <h2>Join Our Team</h2>
+                <p>Are you a skilled professional? Apply to join our team!</p>
+            </div>
+            <form id="workerApplicationForm" class="application-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Professional Title</label>
+                        <input type="text" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Years of Experience</label>
+                        <input type="number" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Skills (comma separated)</label>
+                        <input type="text" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Upload CV (PDF)</label>
+                    <div class="file-upload">
+                        <input type="file" accept=".pdf" required>
+                        <span class="file-name">Choose file</span>
+                    </div>
+                </div>
+                <button type="submit"><i class="fas fa-paper-plane"></i> Submit Application</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign In</h2>
+            <form id="loginForm">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="#" onclick="showSignupModal()">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Create Account</button>
+            </form>
+            <p>Already have an account? <a href="#" onclick="showLoginModal()">Sign In</a></p>
+        </div>
+    </div>
+
+    <script src="js/workers.js"></script>
+</body>
+</html> 

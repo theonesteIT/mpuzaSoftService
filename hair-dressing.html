@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Dressing Services - Impuza Soft</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pricing-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        .premium {
+            border: 2px solid #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" data-i18n="brand">Impuza Soft</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#services" data-i18n="services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#contact" data-i18n="contact">Contact</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-globe"></i> Language
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('en')">English</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('rw')">Kinyarwanda</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Header -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h1 class="text-center mb-4" data-i18n="hair-dressing-title">Hair Dressing Services</h1>
+            <p class="text-center lead" data-i18n="hair-dressing-desc">Professional hair styling and treatment services</p>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-i18n="pricing">Our Pricing Plans</h2>
+            <div class="row">
+                <!-- Basic Plan -->
+                <div class="col-md-4">
+                    <div class="card pricing-card">
+                        <div class="card-body text-center">
+                            <h3 class="card-title" data-i18n="basic-plan">Basic Plan</h3>
+                            <h4 class="card-subtitle mb-3">$20-30</h4>
+                            <ul class="list-unstyled">
+                                <li data-i18n="basic-haircut">Basic Haircut</li>
+                                <li data-i18n="basic-wash">Hair Wash</li>
+                                <li data-i18n="basic-style">Basic Styling</li>
+                                <li data-i18n="basic-trim">Hair Trim</li>
+                            </ul>
+                            <a href="booking.html" class="btn btn-primary" data-i18n="book-now">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard Plan -->
+                <div class="col-md-4">
+                    <div class="card pricing-card">
+                        <div class="card-body text-center">
+                            <h3 class="card-title" data-i18n="standard-plan">Standard Plan</h3>
+                            <h4 class="card-subtitle mb-3">$40-60</h4>
+                            <ul class="list-unstyled">
+                                <li data-i18n="standard-haircut">Premium Haircut</li>
+                                <li data-i18n="standard-wash">Deep Conditioning</li>
+                                <li data-i18n="standard-style">Advanced Styling</li>
+                                <li data-i18n="standard-color">Basic Hair Color</li>
+                            </ul>
+                            <a href="booking.html" class="btn btn-primary" data-i18n="book-now">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="col-md-4">
+                    <div class="card pricing-card premium">
+                        <div class="card-body text-center">
+                            <h3 class="card-title" data-i18n="premium-plan">Premium Plan</h3>
+                            <h4 class="card-subtitle mb-3">$80-120</h4>
+                            <ul class="list-unstyled">
+                                <li data-i18n="premium-haircut">Luxury Haircut</li>
+                                <li data-i18n="premium-treatment">Full Treatment</li>
+                                <li data-i18n="premium-style">Professional Styling</li>
+                                <li data-i18n="premium-color">Premium Hair Color</li>
+                                <li data-i18n="premium-extension">Hair Extensions</li>
+                            </ul>
+                            <a href="booking.html" class="btn btn-primary" data-i18n="book-now">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p data-i18n="copyright">&copy; 2024 Impuza Soft. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="translations.js"></script>
+</body>
+</html> 
